@@ -10,6 +10,7 @@
 }
 
 body {
+  height: 100vh;
   margin: 0;
   padding: 0;
   background: var(--primary-color);
@@ -57,11 +58,18 @@ form button:hover {
   background: var(--primary-color-darker);
 }
 
-.paragrafo-resultado, .bad {
-  background: rgb(109, 255, 182);
-  padding: 10px 20px;
-}
 
 .bad {
   background: rgb(255, 150, 150);
+}
+
+@media (max-width: 600px) {
+  .container {
+   height: 100%;
+   margin: 0;
+
+  }
+  #formulario{
+    margin-top: 50%;
+  }
 }

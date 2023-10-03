@@ -3,48 +3,48 @@ const forms = document.querySelector("#formulario");
 forms.addEventListener("submit", function (evento) {
   evento.preventDefault();
 
-  const pegarPeso = evento.target.querySelector("#peso");
-  const pegarAltura = evento.target.querySelector("#altura");
+  const getWeight = evento.target.querySelector("#peso");
+  const getHeight = evento.target.querySelector("#altura");
 
-  const peso = Number(pegarPeso.value);
-  const altura = Number(pegarAltura.value);
+  const weight = Number(getWeight.value);
+  const height = Number(getHeight.value);
 
-  if (!peso) {
-    gerarResults("Peso inválido", "false");
+  if (!weight) {
+    getResults("Peso inválido", "false");
     return;
   }
 
-  if (!altura) {
-    gerarResults("Altura inválida", "false");
+  if (!height) {
+    getResults("Altura inválida", "false");
     return;
   }
 
-  const imc = pegarImc(peso, altura);
-  const niveldoImc = calculodoimc(imc);
+  const imc = getImc(weight, height);
+  const getCalcIMC = calcImc(imc);
 
-  let msg = `Seu IMC é ${imc} (${niveldoImc}).`;
+  let msg = `Seu IMC é ${imc} (${getCalcIMC}).`;
 
-  gerarResults(msg, true);
+  getResults(msg, true);
 });
 
-function pegarImc(peso, altura) {
-  const imc = peso / (altura * altura);
+function getImc(weight, height) {
+  const imc = weight / (height * height);
   return imc.toFixed(2);
 }
-function calculodoimc(imc) {
-  const abaixo = "Abaixo do Peso";
+function calcImc(imc) {
+  const below = "Abaixo do Peso";
   const normal = "Peso Normal";
-  const sobrepeso = "Sobrepeso";
+  const overweight = "Sobrepeso";
   const obs1 = "Obesidade grau I";
   const obs2 = "Obesidade grau II";
   const obs3 = "Obesidade grau III";
 
   if (imc <= 18.5) {
-    return abaixo;
+    return below;
   } else if (imc > 18.5 && imc <= 24.9) {
     return normal;
   } else if (imc >= 25 && imc <= 29) {
-    return sobrepeso;
+    return overweight;
   } else if (imc >= 30 && imc <= 34.99) {
     return obs1;
   } else if (imc >= 35 && imc <= 39.99) {
@@ -54,24 +54,23 @@ function calculodoimc(imc) {
   }
 }
 
-function criandoParagrafo() {
-  const criar = document.createElement("p");
-  return criar;
+function createParagraph() {
+  const createElementHtml = document.createElement("p");
+  return createElementHtml;
 }
 
-function gerarResults(msg, valido) {
+function getResults(msg, valido) {
   const results = document.querySelector("#resultado");
   results.innerHTML = "";
 
-  const paragrafo = criandoParagrafo();
+  const paragraph = createParagraph();
 
   if (valido) {
-    paragrafo.classList.add("paragrafo");
+    paragraph.classList.add("paragrafo");
   } else {
-    paragrafo.classList.add("ruim");
+    paragraph.classList.add("ruim");
   }
 
-  paragrafo.innerHTML = msg;
-  console.log(msg, valido)
-  results.appendChild(paragrafo);
+  paragraph.innerHTML = msg;
+  results.appendChild(paragraph);
 }
